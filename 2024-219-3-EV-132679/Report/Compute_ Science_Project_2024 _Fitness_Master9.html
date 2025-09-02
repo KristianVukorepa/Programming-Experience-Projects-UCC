@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Webpage</title>
+    <meta name="author" content="Computer Science Project, 2024"/>
+    <meta charset="UTF-8" />
+    <meta name='viewport' content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="keywords" content="loom definition, dictionary, english, british, american, business, british english, thesaurus, define loom, loom meaning, what is loom, spelling, conjugation, audio pronunciation, free, online, english.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200&display=swap" rel="stylesheet">
+    
+    <style>.instruction{
+    color:red;
+    font-family:timesnewroman;
+    font-size:18px;
+      }
+	  
+	body {
+	  font-family: Lora;
+	  background-color: black;
+	  color: white;
+	  text-align: center;
+	  padding-left: 17%;
+	  padding-right: 17%;
+	}
+	#left { text-align: left; }
+	
+	table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	}
+	
+	a:link {
+	color: blue;
+	background-color: transparent;
+	text-decoration: none;
+	}
+	a:visited {
+	color: blue;
+	background-color: transparent;
+	text-decoration: none;
+	}
+    </style>
+    
+  </head>
+  <body>
+	<h1>Fitness Master - Computer Science Project Report</h1>
+	
+	<h2>Meeting The Brief</h2>
+	
+	<video controls height="360" width="640">
+		<source src="ComputerScienceProjectVideo.mp4" type="video/mp4">
+    </video>
+	
+    <h2>Investigation</h2>
+	
+	<p id="left">I commenced my investigation by researching the existing solutions applicable to fitness trackers and sensors, such as the Fitbit fitness watch that evaluates a user's fitness level based on data it gathers by an input device similar to a micro:bit “shake” sensor. Then, I have considered the various smartphone based applications like Google Fit storing the user’s exercise timings and scores in its “workout history” and MyFitnessPal that gives advice on the user's current exercise routine.</p>
+	<p id="left">The other two alternative project ideas I have considered were the air quality sensor and analyser as well as a task master that would record the tasks one needs to do in a day and motivate them to set SMART (Specific, Measurable, Achievable, Relevant, and Time-Bound) goals, that would improve their mental well-being and reduce procrastination in users.</p>
+	<p id="left">I choose to settle on the fitness and exercise tracker as: </p>
+		<ol id="left" type="a">
+			<li> To record the level of pollution in air accurately is very difficult, and due to the fact that my school had only the basic micro:bit available to make such measurements this was impossible, since to do this, micro:bit "MonkMakes" CO2 extension is needed. The analysis of such data would also be quite complicated.</li>
+			<li> The task master project was, as I felt, too restrictive in its scope, and would not have allowed me to collect enough data to form a viable database. This was an obstacle I came across only after starting to plan the necessary architecture in the first week of the coursework.</li>
+		</ol>
+	<p id="left">I have examined the existing need for an exercise tracker by conducting a short survey with a total of 104 respondents from my school, including both the students and the staff members to determine how frequently they exercise, and whether or not they want to be motivated to exercise more. The results, organised by the age brackets adopted from the most recent World Health Organization age group categorisation (adolescents, adults and older adults) revealed that 31.1% of respondents claimed that their exercise routine “needs improvement", and that overwhelming 71.8% have regarded themselves as “motivated” to do exercise. This project would then target those other 28.2% who’s exercise routine is poor and are unmotivated to conduct exercise at the detriment to their well-being.</p>
+
+	<h2>Plan And Design</h2>
+	
+	<p id="left">In terms of software, I decided to write the code of the artefact using Python as programming language, and Thonny as editor. Additionally, I utilised micro:bit MakeCode Integrated Development Environment (IDE) to use "blocks" to make programming of micro:bit an easy to follow process. The hardware I decided to use was micro:bit embedded system technology, using LED lights and programmable buttons as well as USB port. The critical hardware component I used in micro:bit was the "shake" sensor, providing a way to measure and determine the fitness level of the user through counting the number of times it has been activated, representative of the number of jumping jacks performed by the user. This ability to record and measure user's exercise performance is critical for meeting the user's needs in terms of improving their physical well-being through exercise.</p>
+	
+	<h3>Pseudocode</h3>
+	
+	<div>
+	<img src="pseudocode.png" style="width:70%; height:auto">
+	</div>
+	
+	<h3>Flowchart</h3>
+	
+	<div>
+	<img src="FlowchartforFitnessMaster.png" style="width:90%; height:auto">
+	</div>
+	
+	<h3>Planning By Requirements</h3>
+	
+	<p id="left">The artefact was designed to function as follows:</p>
+	
+	<ol id="left">
+		<li> A database stored in a <b>csv file</b> containing "previous user's" with manually generated accounts and details, to make the analysis and comparison easy to demonstrate.</li>
+		<br/>
+		<li> The artefact was planned to be an <b>automated embedded system</b>: Once the code is run it will automatically prompt the user to enter different <b>inputs</b>, such as their username and password, as well as other descriptive features of wellbeing like perceived exertion as well as energy level and mood score recorded after the exercise, that are also <b>validated</b> using try-except blocks to handle errors.</li>
+		<br/>
+		<li> Exercise is executed using micro:bit - the user enters micro:bit's COM port number and connects to it, jumps (recognised by "shake" sensor) and presses button A when finished. The timing of the exercise and the number of "jumps" or shakes are recorded and inserted into a list in the csv file database under the user's record. </li>
+		<br/>
+		<li> The programme was planned to then transform the raw data by analysing it, finding <b>mean</b>, <b>mode</b>, <b>median</b> and <b>frequency</b> values of the user's performance. It visualises the processed data in graphical form of a <b>pie chart</b> and a <b>line graph.</b></li>
+		<br/>
+		<li> Then, the programme <b>models</b> this data, predicting whether the next exercise result will be higher or lower than the last one by splitting the list into two groups of items. I would then get a mean of each group and compare them to make the inference.</li>
+		<br/>
+		<li> Lastly, the programme makes a suggestion of the number of weeks a user should anticipate to have to exercise using the programme until getting fit, taking into account their age, time spent exercising, their expectations and, of course, their exercise results by answering the <b>4 "what-if" questions</b>, thus meeting the brief.</li>
+	</ol>
+	
+	<h2>Create</h2>
+	
+    <h3>Project Diary</h3>
+	
+    <p id="left">Below is the timeline of the work that was carried out, reported every fortnight and listed in a chronological order:</p>	
+	<ol id="left">
+	   <li>Weeks 4th - 17th December 2023:</li>
+	   <ul>
+	     <li>Created a dataset in Python, using csv file to store manually entered data.</li>
+		 <li>Declared a number of lists containing individual data points relevant to a specific record and field.</li>
+		 <li>The block of code used for either a "Sign In" or to "Register" a new user is validated using try-except for the ValueError, TypeError and AssertionError.</li>
+	   </ul>
+	   <br/>
+	   <li>Weeks 18th December 2023 - 14 January 2024 (excluding Christmas holidays):</li>
+	   <ul>
+		 <li>Created variables "JumpRate" and "TotalTime" in micro:bit MakeCode IDE to record the number of jumps preformed per minute and the total time spent exercising in a session.</li>
+		 <li>Converted "TotalTime" from seconds to minutes and stored it in the csv file by adding it to the sum of time spent exercising.</li>
+		 <li>Created a prompt inputting Micro:bit 's COM port number to establish serial communication between the user's computer and the micro:bit.</li>
+	   </ul>
+	   <br/>
+	   <li>Weeks 15th-28th January 2024:</li>
+	   <ul>
+		 <li>Wrote code to calculate the mean, median, maximum and minimum values to analyse of user's data.</li>
+		 <li>Created a display using print statements and by calling functions such as “printMean()” and printMaximum()”, independent of functions like “mean()” and “maximum()” that are kept separate so that their value can be returned back to the caller.</li>
+		 <li>Calculated mode programmatically, i.e. the greatest number of jumps preformed by the user.</li> 
+	   </ul>
+	   <br/>
+	   <li>Weeks 29h January - 11th February 2024:</li>
+	   <ul>
+		 <li>Completed my first “what-if” question: “What if the user's mean score is below medium level of difficulty, or above medium level of difficulty but below the advanced level, or at or above the advanced level of difficulty?” - based on the user's mean jump rate, maximum score and total time spent exercising the amount of weeks needed to exercise until reaching fitness is determined.</li>
+		 <li>Finished coding second “What-if” question asking: “What if the user's mean score is below their expectations, or equal to or above their expectations and to what extent?”, scrutinising user’s expectations and giving constructive mental health criticism and advice on the basis of unrealistic physical health expectations that data analysis proved wrong.</li>
+	   </ul>
+	   <br/>
+	   <li>Weeks 12th February - 3rd March 2024 (excluding mid-term break):</li>
+	   <ul>
+		 <li>Completed the code for the third “what-if" question, asking: “What if the user's age is below 20, above 20 to 40 or above 40? How will age reflect on their exertion levels?”. The question examines user's age and their perceived exertion after exercise - something crucially important to help older users prevent gaining an injury while exercising.</li>
+		 <li>The fourth “what-if" question stated: “What if the user's mean and median mood score together with their average reported energy level is high or low, and what are the implications on the user's ability to perform the exercise?”, and is answered by modelling the “timeNeededToGetFit” variable so as to increase it by 1 week if the user’s energy level and mood score are low and vice versa, in order to allow the user to decrease exercise intensity and thus prevent overexertion.</li>
+	   </ul>
+	   <br/>
+	   <li>Weeks 4th-19th March 2024:</li>
+	   <ul>
+		 <li>Created “findTrend()” function to predict whether the next exercise result will be higher or lower then the latest kept in the database. </li>
+		 <li>Declared a function “motivation()” to compare a user's maximum result (mode) with that of the database, informing the user of the difference between them, motivating them to compete with other theoretical users and hence become fit faster.</li>
+		 <li>The processed data is interpreted graphically by a pie chart and a line graph.</li>
+		 <li>Created a while loop to return to the earlier block of code to allow user to exercise again or choose to exit the programme.</li>
+	   </ul>
+	</ol>
+	
+	<h3>Problem I Managed To Resolve</h3>
+	
+	<p id="left">One of the most challenging puzzles I have confronted while working on this project and developing the artefact was making the programme to ask the user whether they wanted to exercise again. This was in my opinion, a crucial aspect of the artefact, as it allowed the “replayability” of the programme that could build further the initially manually generated database and develop more accurate analysis conclusions.<br/><br/>To overcome this issue, I used an input prompt statement in which the user could select whether “1” to exit the programme, or “2” to exercise again. While I initially struggled to find a way around this, I discovered that if I indented all of the lines of code equally so that they belong to a single while loop that contains the instructions for exercising using the micro:bit and I impose a rule that it runs while “e == 0”, then by simply echoing that “e = 0” at the end of the programme loops us back to the start of the while loop, and we can exercise again and so infinitely many times. By entering “2”, we exit the loop and terminate the programme.<br/><br/>Solving this problem was the most significant example of <b>iteration</b> stage in the development of my artefact, as the solution required coming back from the end of the programme to its very beginning and creating a comprehensive loop that allows for the code itself to be iterated over many times in action.</p>
+	
+	<h3>Outline of a Significant Block of Code</h3>
+	
+	<p id="left">Mean Exercise Score compared to suggested Level of Exercise Difficulty</p>
+	<div>
+	<img src="whatIfQuestion1.png" style="width:100%; height:auto">
+	</div>
+	
+	<p id="left">The code above is my response to the “what if” question which asks: “What if the user's mean score is below medium level of difficulty, or above medium level of difficulty but below the advanced level, or at or above the advanced level of difficulty?”<br/><br/>Thus, I have set out to create a large logic branch of “if/elif” statements that are used to navigate through different scenarios of various possible mean exercise scores. Namely, the code is broken down into three main parts:</p> 
+	
+	
+	<p id="left">1. Assigning fixed reference values to Levels of Difficulty and establishing the parameters/arguments (image below)</p>	
+	<div>
+	<img src="whatIfQuestion1a.png" style="width:100%; height:auto">
+	</div>
+	
+	
+	
+	<p id="left">2. Comparing the mean jump rate (mean of all exercise scores for that user) with each level of difficulty as an individual possibility (image below)</p>
+	<div>
+	<img src="whatIfQuestion1b.png" style="width:100%; height:auto">
+	</div>
+	
+	<p id="left">In each case, the fitness recommendation is by default assigned a value of 12 weeks, as this is the normal amount of time by which most people will become physically fit and benefit from it in terms of long term health improvements. This is reduced to 8 and then 3 as the mean exercise result gets higher, indicating a user who has already been physically active before, thus requiring less time using the programme until getting fit. </p>
+	
+	<p id="left">3. The maximum or the highest value for the number of jumps per minute that the user has achieved so far is compared to the different levels of difficulty (image below)</p>
+    <div>
+	<img src="whatIfQuestion1c.png" style="width:100%; height:auto">
+	</div>
+	
+	<p id="left">The maximum value comparison shows the potential of the user, and gives them motivation to pursue the hardest level of difficulty that they can practise without injury as their target while staying within the realistic and educated boundaries based on the data analysis and the already existing values.</p>
+	
+	
+	<h3>Unit Testing</h3>
+	
+	<p id="left">I have used unit testing to test the functionality and outcome of functions specifically designed for statistical analysis of raw data store in the csv file database, i.e. mean, median, minimum and maximum value, all performed in a separate file called "ComputerScienceProject_UnitTesting" that imports the functions tested from the artefact file. These blocks of code were tested in terms of the calculations that they make on a list of positive integers against the manually calculated expected result, using "Triple-A-Model" (Arrange, Act and Assert) to organise my tests. The testing showed me that the artefact works successfully, as the results of all unit tests when run are "OK" with 0 "FAILS". Therefore, I have ensured that my artefact is fully autonomous and is free of any bugs I could detect.</p>
+	
+	
+	<h2>Evaluation</h2>
+	
+	<p id="left">The initial design of the artefact planned through a short pseudocode above was a useful way for me to stay efficient and not waste time, leading me to use <b>abstraction</b> to phase out irrelevant details and concepts not fundamental to answering the brief, making my project concise and focused. The way that the flowchart has clearly through <b>decomposition</b> broken down the large task of meeting the brief into smaller, more manageable problems made me confident at writing code in a clear and organised way.
+	<br/><br/>
+	The end-user's need for forming a regular exercise routine that would boost their physical well-being was fully met, with the artefact helping user's to track the trend across their exercise performances. The personalised suggestions at the end of the programme specified according to the user's age, how fast they wish to get fit and their previous exercise scores now form a fitness routine to cater for the unique needs of the user. In conclusion, my initial objectives of creating a fully autonomous fitness tracking artefact through validating, storing, analysing and graphically visualising user’s exercise data, while making predictions that are beneficial to user's well-being are satisfied. Therefore, I feel the task set out in the brief has been carried out successfully and is fully achieved.
+	<br/><br/>
+	Still, there are few main areas where I could improve my code:</p>
+	<ol id="left">
+			<li> Firstly, I would refine code to allow for greater testability, as currently only the mean, median, maximum and minimum values are involved in operations involving calculations that can be unit tested.</li>			
+			<li> Secondly, if I were to iterate through the entire project, I would store the user's data using cloud storage, as csv files can be accessed only from a single device. I could achieve this using Firebase or Microsoft Access database and by using dictionaries to communicate the input data from the programme to the database.</li>	
+			<li> Additionally, the limitations of the micro:bit hardware produced a small delay when counting the number of shakes, making the overall jump count inaccurate for scientific testing. I would rectify this by using a more sensitive shake sensor device, like a FitBit watch.</li>
+			<li> Lastly, I would like to gather some non-numeric data points for analysis, as mode and frequency measures of analysis did poorly at interpreting numeric values.</li>
+	</ol>
+	
+  <h2>References</h2>
+	
+  <p id="left">The Bibliography of Scholarly Articles used during Investigation:</p>
+  <ul id="left">
+	<li><a href="https://doi.org/10.3390/technologies11030066"></a>Elder A, Guillen G, Isip R, Zepeda R, Lewis ZH. A Deeper Look into Exercise Intensity Tracking through Mobile Applications: A Brief Report. Technologies. 2023; 11(3):66.</li>
+	<li><a href="https://pubmed.ncbi.nlm.nih.gov/28270378/"></a>Guo Y, Bian J, Leavitt T, et al. Assessing the Quality of Mobile Exercise Apps Based on the American College of Sports Medicine Guidelines: A Reliable and Valid Scoring Instrument. J Med Internet Res. 2017;19(3):e67. Published 2017 Mar 7. doi:10.2196/jmir.6976</li>
+	<li><a href="https://www.itm-conferences.org/articles/itmconf/abs/2023/06/itmconf_icdsac2023_05006/itmconf_icdsac2023_05006.html"></a>Wu, Y., Yu, L., Xu, J., Deng, D., Wang, J., Xie, X., ... & Wu, Y. (2023, October). AR-Enhanced Workouts: Exploring Visual Cues for At-Home Workout Videos in AR Environment. In Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (pp. 1-15).</li>
+  </ul>
+  
+  <p id="left">Other references relevant to the investigation of Existing Solutions and chooisng Jumping Jacks as the mode of exercise:</p>
+  <ul id="left">
+	<li><a href="https://evoke.ie/2021/01/26/wellness/these-are-the-top-10-most-popular-health-and-fitness-apps-in-ireland">Further Context and Current Solutions</a> - I have researched the most popular health and fitness apps in Ireland such as MyFitnessPal and FitBit to give me further context relevant to the brief</li>
+	<li><a href="https://simplifaster.com/articles/jump-testing-strength-standards-assessment/">Jump Based Fitness Standards</a> - How to monitor and evaluate athlete fitness by recording their jump performance</li>
+	<li><a href="https://iris.who.int/bitstream/handle/10665/337001/9789240014886-eng.pdf">World Health Organization</a> - WHO's age cathegorisation for assesment of well-being</li>
+  </ul>
+
+  <p id="left">The Fitness Questionnaire I have used to Investigate user needs and the data gathered:</p>
+  <ul id="left">
+	<li><a href="https://docs.google.com/forms/d/1hz4JiqeH5wexCQ7IhzEBrJ2Cv2Sr9LmyFNLLldJ3oLs/edit?pli=1&edit_requested=true&pli=1">Questionnaire</a> - A survey made to collect data on general population fitness in my school. (see Appendix A)</li>
+	<li><a href="https://docs.google.com/spreadsheets/d/15n363s8XC-7bJ-eNd7tSFdBWoc2crk3eA0h0DonlO1M/edit#gid=198617246">Google Sheets Database of Responses</a> - Results from 104 teachers and students who have specified their needs as potential users in terms of physical exercise</li>
+  </ul>
+ 
+  <p id="left">The list of online tutorials and websites that have helped me refresh my mind and learn more:</p>
+  <ol id="left">
+	<li><a href="https://realpython.com/python-catch-multiple-exceptions/">RealPython: Python exceptions by tuple method</a></li>
+	<li><a href="https://https://www.youtube.com/watch?v=MImAiZIzzd4">YouTube: Python error handling</a></li>
+	<li><a href="https://stackoverflow.com/questions/39336449/python-check-if-value-in-csv-file">StackOverflow: The way to check whether a data point is in a csv file dataset</a></li>
+	<li><a href="https://bobbyhadz.com/blog/python-add-user-input-to-dictionary">BobbyHadz: A tutorial on using user prompting in Python dictionaries</a></li>
+	<li><a href="https://www.w3schools.com/python/ref_list_index.asp">W3Schools: Python "index" function tutorial</a></li>
+	<li><a href="https://www.askpython.com/python/clear-vs-code-terminal">AskPython: How to clear the Python terminal - 4 ways</a></li>
+	<li><a href="https://www.curriculumonline.ie/senior-cycle/senior-cycle-subjects/computer-science/support-material-for-teaching-and-learning/2-alt-resources/">CurriculumOnline: Suggestions and examples on how to plan and carry out an Analytics project for ALT 2</a></li>
+	<li><a href="https://docs.python.org/3/library/unittest.html">Python (Official Website): How to code and execute unit tests in Python</a></li>
+	<li><a href="https://www.youtube.com/watch?v=1Lfv5tUGsn8&list=PLi01XoE8jYohWFPpC17Z-wWhPOSuh8Er-&index=31">YouTube: Unit testing best practices; How to test for different values in Python</a></li>
+	<li><a href="https://learnpython.com/blog/run-python-script-windows/">LearnPython: How to run a Python script in windows command prompt</a></li>
+	<li><a href="https://www.geeksforgeeks.org/python-list-extend-method/">GeeksForGeeks: Learned how to use extend method for merging lists</a>
+	<li><a href="https://www.digitalocean.com/community/tutorials/python-string-contains">DigitalOcean: How to authenticate a password using "_contains_" function</a></li>
+	<li><a href="https://stackoverflow.com/questions/17308872/check-whether-string-is-in-csv">StackOverflow: Check whether a string is present in a csv file database</a></li>
+	<li><a href="https://docs.python.org/3/library/statistics.html">Python (Official Website): Functions for calculating mathematical statistics in Python</a>
+	<li><a href="https://www.geeksforgeeks.org/python-programming-language/#python-data-types">GeeksForGeeks: The types and utilities of diffrent kinds of data</a></li>
+	<li><a href="https://www.geeksforgeeks.org/python-set-3-strings-lists-tuples-iterations/?ref=lbp">GeeksForGeeks: Learned how to tempoarary store data efficiently using tuples</a></li>
+	<li><a href="https://www.geeksforgeeks.org/reading-writing-text-files-python/">GeeksForGeeks: Reading and writing text files tutorial for Python</a></li>
+	<li><a href="https://https://www.geeksforgeeks.org/plot-a-pie-chart-in-python-using-matplotlib//">GeeksForGeeks: Plotting a pie chart using matplotlib tutorial</a></li>
+	<li><a href="https://https://www.freecodecamp.org/news/exploratory-data-analysis-with-numpy-pandas-matplotlib-seaborn/#data-visualization-using-python-matplotlib-and-seaborn/">FreeCodeCamp: How to visualise data graphically using Python</a></li>
+	<li><a href="https://www.freecodecamp.org/news/how-to-get-the-current-time-in-python-with-datetime/">FreeCodeCam: How to communicate with user in real time using Python "datetime" module</a></li>
+	<li><a href="https://www.w3schools.com/python/python_ref_keywords.asp">W3Schools: The list of all of the keywords in Python</a></li>
+	<li><a href="https://www.geeksforgeeks.org/list-methods-python/?ref=lbp">GeeksForGeeks: Overview of Python list methods</a></li>
+	<li><a href="https://www.w3schools.com/python/python_booleans.asp">W3Schools: The use and meaning of Boolean values in Python</a></li>
+	<li><a href="https://makecode.microbit.org/device/serial">Micro:Bit MakeCode: How to use COM number to establish serial communication between micro:bit and a computer</a></li>
+	<li><a href="https://makecode.microbit.org/reference/serial/write-value">Micro:Bit MakeCode: The way to write and communicate a value form micro:bit to Python programme</a></li>
+	<li><a href="https://www.w3schools.com/python/python_dictionaries.asp">W3Schools: How to use Python dictionaries for databases</a></li>
+	<li><a href="https://automatetheboringstuff.com/2e/chapter9/">AutomateTheBoringStuff: Reading and writing csv files</a></li>
+	<li><a href="https://www.w3schools.com/python/python_comments.asp">W3Schools: Review of how to use Python comments - single line and multiline</a></li>
+	<li><a href="https://www.w3schools.com/python/python_functions.asp">W3Schools: How to create and call a function in Python for reusibility and neatness</a></li>
+	<li><a href="https://www.geeksforgeeks.org/python-get-a-list-as-input-from-user/?ref=lbp">How to make an input from user an item in a list in Python</a></li>
+	<li><a href="https://www.w3schools.com/python/python_datetime.asp">W3Schools: How to use Python datetime module and when is it useful</a></li>
+	<li><a href="https://www.geeksforgeeks.org/python-ways-to-remove-particular-list-element/?ref=lbp">GeeksForGeeks: Diffrent functions used to remove particular item in a list</a></li>
+	<li><a href="https://www.geeksforgeeks.org/python-list-comprehension/?ref=lbp">GeeksForGeeks: Python list comprehension</a></li>
+	<li><a href="https://automatetheboringstuff.com/2e/chapter8/">AutomateTheBoringStuff: Input validation methods and use</a></li>
+	<li><a href="https://rneacy.dev/mbv2/ble/event-service/">BBC Micro:Bit: Micro:bit events and messages</a></li>
+	<li><a href="https://www.w3schools.com/python/matplotlib_pyplot.asp">W3Schools: How to plot a simple line graph using Matplotlib library</a></li>
+	<li><a href="https://www.geeksforgeeks.org/test-if-a-function-throws-an-exception-in-python/">GeeksForGeeks: Test if a function raises an exception in Python</a></li>
+  </ol>
+  
+  <h2>Appendix A</h2>
+  
+  <p id="left">A copy of questionnaire (in the case that access is denied when following the link above):</p>
+  <ol id="left">
+    <li>Do you identify yourself as:</li>
+	   <br/>
+       <ul>
+	     <li>Male</li>
+		 <li>Female</li>
+		 <li>Other</li>
+		 <li>I prefer not to say</li>
+	   </ul>
+	   <br/>
+    <li>The World Health Organisation (WHO) categorises respondents under the following age brackets. What age bracket do you fit under?</li>
+	   <br/>
+       <ul>
+	     <li>5-17 years</li>
+		 <li>18-64 years</li>
+		 <li>65 years and older</li>
+	   </ul>
+	   <br/>
+    <li>During the last week, how many days have you been exercising?</li>
+	   <br/>
+       <ul>
+	     <li>1-2 days</li>
+		 <li>3-4 days</li>
+		 <li>5 days or more</li>
+	   </ul>
+	   <br/>
+    <li>How many days a week do you exercise in general?</li>
+	   <br/>
+       <ul>
+	     <li>1-2 days</li>
+		 <li>3-4 days</li>
+		 <li>5 days or more</li>
+	   </ul>
+	   <br/>
+    <li>Which description best summarises your exercise routine?</li>
+	   <br/>
+       <ul>
+	     <li>Excellent</li>
+		 <li>Good</li>
+		 <li>Needs Improvement</li>
+	   </ul>
+	   <br/>
+    <li>Are you motivated to exercise?</li>
+	   <br/>
+       <ul>
+	     <li>Yes</li>
+		 <li>No</li>
+	   </ul>
+  </ol>
+  
+  <h2>Appendix B</h2>
+    
+    <p id="left">An image of micro:bit code used to record the user jump rate and time take per exercise:</p>
+    <div>
+	<img src="microBitCode.png" style="width:50%; height:auto">
+	</div>
+
+    <h2>Summary Word Count</h2>
+	<table align="center">
+    <thead>
+        <tr>
+            <th><b>Section</b></th>
+            <th><b>Word Count</b></th>
+        </tr>
+    </thead>
+      <tbody>
+        <tr>
+            <td>1. Meeting the Brief</td>
+            <td>0 (Video)</td>
+        </tr>
+        <tr>
+            <td>2. Investigation</td>
+            <td>377</td>
+        </tr>
+        <tr>
+            <td>3. Plan And Design</td>
+            <td>440</td>
+        </tr>
+        <tr>
+            <td>4. Create</td>
+            <td>1281</td>
+        </tr>
+        <tr>
+            <td>5. Evaluation</td>
+            <td>376</td>
+        </tr>
+        <tr>
+            <td><b>Total:</b></td>
+            <td>2474</td>
+        </tr>
+      </tbody>
+    </table>
+
+	</body>
+</html>
